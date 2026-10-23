@@ -18,6 +18,13 @@
 
 import os
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import GridSearchCV, train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.svm import LinearSVC
+
+
 CRITICS = ["Dennis+Schwartz", "James+Berardinelli", "Scott+Renshaw", "Steve+Rhodes"]
 
 
@@ -46,8 +53,6 @@ print(len(texts), "reviews")
 print("Negative:", labels.count(0), "Neutral:", labels.count(1), "Positive:", labels.count(2))
 
 # Split the data into training and testing sets
-from sklearn.model_selection import train_test_split
-
 X_train, X_test, y_train, y_test = train_test_split(
     texts,
     labels,
@@ -60,10 +65,6 @@ print("\nTraining reviews:", len(X_train))
 print("Testing reviews:", len(X_test))
 
 # Classification pipeline
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import LinearSVC
-
 model = Pipeline([
     ('tfidf', TfidfVectorizer()),
     ('clf', LinearSVC(random_state=42))
@@ -75,8 +76,6 @@ model.fit(X_train, y_train)
 print("\nClassifier trained successfully!")
 
 # Calculate accuracy
-from sklearn.metrics import accuracy_score
-
 predicted = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, predicted)
@@ -85,8 +84,6 @@ print("\nClassifier Accuracy:", accuracy)
 print("Accuracy Percentage:", accuracy * 100, "%")
 
 # Classification report
-from sklearn.metrics import classification_report
-
 print("\nClassification Report:")
 
 print(classification_report(
@@ -96,14 +93,10 @@ print(classification_report(
 ))
 
 # Confusion matrix
-from sklearn.metrics import confusion_matrix
-
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, predicted))
 
 # Grid search
-from sklearn.model_selection import GridSearchCV
-
 parameters = {
     'tfidf__ngram_range': [(1, 1), (1, 2)],
     'tfidf__min_df': [1, 2, 3],
