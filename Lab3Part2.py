@@ -133,6 +133,7 @@ best_accuracy = accuracy_score(y_test, best_predicted)
 
 print("\nImproved Classifier Accuracy:")
 print(best_accuracy)
+print("Improved Accuracy Percentage:", best_accuracy * 100, "%")
 
 print("\nImproved Classification Report:")
 print(classification_report(
