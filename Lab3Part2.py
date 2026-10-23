@@ -1,3 +1,15 @@
+# Code for Lab 3 Part 2
+# Written by: Cody Watkins
+# Date: 2024-06-10
+# AI usage: I used the built in AI to handle the comments and the grid search portion of the code. I did not use AI to write any of the code for the model or the data loading.
+
+#Questions
+#1. My classifier predicted positive reviews the best. Negative reviews were the hardest to identify. Neutral reviews also had a lower F1-score because they were sometimes confused with positive and negative reviews.
+
+#2. The most common mistake was predicting neutral reviews as positive. It also predicted 102 negative reviews as neutral. These mistakes can make sense because neutral reviews can contain both positive and negative words, making it harder for the classifier to tell the difference.
+
+#3. I think the classifier can't reach 100% accuracy because movie reviews can be complicated. A lot of people have different opinions about the same movies, and some reviews can be very subjective or sarcastic.
+
 import os
 
 CRITICS = ["Dennis+Schwartz", "James+Berardinelli", "Scott+Renshaw", "Steve+Rhodes"]
@@ -27,7 +39,7 @@ texts, labels = load_reviews("scaledata")
 print(len(texts), "reviews")
 print("Negative:", labels.count(0), "Neutral:", labels.count(1), "Positive:", labels.count(2))
 
-# Split the data
+# Split the data into training and testing sets
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -76,3 +88,53 @@ print(classification_report(
     predicted,
     target_names=["Negative", "Neutral", "Positive"]
 ))
+
+# Confusion matrix
+from sklearn.metrics import confusion_matrix
+
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, predicted))
+
+# Grid search
+from sklearn.model_selection import GridSearchCV
+
+parameters = {
+    'tfidf__ngram_range': [(1, 1), (1, 2)],
+    'tfidf__min_df': [1, 2, 3],
+    'clf__C': [0.1, 1, 10]
+}
+
+grid_search = GridSearchCV(
+    model,
+    parameters,
+    cv=5,
+    n_jobs=-1
+)
+
+grid_search.fit(X_train, y_train)
+
+print("\nBest Parameters:")
+print(grid_search.best_params_)
+
+print("\nBest Cross-Validation Score:")
+print(grid_search.best_score_)
+
+# Test the best classifier found by grid search
+best_model = grid_search.best_estimator_
+
+best_predicted = best_model.predict(X_test)
+
+best_accuracy = accuracy_score(y_test, best_predicted)
+
+print("\nImproved Classifier Accuracy:")
+print(best_accuracy)
+
+print("\nImproved Classification Report:")
+print(classification_report(
+    y_test,
+    best_predicted,
+    target_names=["Negative", "Neutral", "Positive"]
+))
+
+print("\nImproved Confusion Matrix:")
+print(confusion_matrix(y_test, best_predicted))
