@@ -1,8 +1,7 @@
 # Code for Lab 3 Part 2
 # Written by: Cody Watkins
 # Date: 2024-06-10
-# AI usage: I used the built in AI to handle the comments and the grid search portion of the code. I did not use AI to write any of the code for the model or the data loading.
-
+# AI usage: I used the built in AI to handle the comments and the grid search portion of the code.
 #Questions
 #1. My classifier predicted positive reviews the best. Negative reviews were the hardest to identify. Neutral reviews also had a lower F1-score because they were sometimes confused with positive and negative reviews.
 
