@@ -1,13 +1,19 @@
 # Code for Lab 3 Part 2
 # Written by: Cody Watkins
-# Date: 2024-06-10
+# Date: 10-22-2026
 # AI usage: I used the built in AI to handle the comments and the grid search portion of the code.
 #Questions
-#1. My classifier predicted positive reviews the best. Negative reviews were the hardest to identify. Neutral reviews also had a lower F1-score because they were sometimes confused with positive and negative reviews.
+#1. My classifier predicted positive reviews the best, correctly identifying 392 out of 474.
+#  Negative reviews were the hardest to identify, with only 175 out of 299 correctly predicted.
+#  Neutral reviews also had a lower F1-score because they were sometimes confused with positive and negative reviews.
 
-#2. The most common mistake was predicting neutral reviews as positive. It also predicted 102 negative reviews as neutral. These mistakes can make sense because neutral reviews can contain both positive and negative words, making it harder for the classifier to tell the difference.
+#2. The most common mistake was predicting neutral reviews as positive.
+#  It also predicted 102 negative reviews as neutral.
+#  These mistakes can make sense because neutral reviews can contain both positive and negative words,
+#  making it harder for the classifier to tell the difference.
 
-#3. I think the classifier can't reach 100% accuracy because movie reviews can be complicated. A lot of people have different opinions about the same movies, and some reviews can be very subjective or sarcastic.
+#3. I think the classifier can't reach 100% accuracy because movie reviews can be complicated.
+#  A lot of people have different opinions about the same movies, and some reviews can be very subjective or sarcastic.
 
 import os
 
