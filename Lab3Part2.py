@@ -65,3 +65,14 @@ accuracy = accuracy_score(y_test, predicted)
 
 print("\nClassifier Accuracy:", accuracy)
 print("Accuracy Percentage:", accuracy * 100, "%")
+
+# Classification report
+from sklearn.metrics import classification_report
+
+print("\nClassification Report:")
+
+print(classification_report(
+    y_test,
+    predicted,
+    target_names=["Negative", "Neutral", "Positive"]
+))
