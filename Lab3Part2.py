@@ -8,7 +8,7 @@
 #  Negative reviews were the hardest to identify, with only 175 out of 299 correctly predicted.
 #  Neutral reviews also had a lower F1-score because they were sometimes confused with positive and negative reviews.
 
-#2. The most common mistake was predicting neutral reviews as positive.
+#2. The most common mistake was predicting neutral reviews as positive, which happened 126 times.
 #  It also predicted 102 negative reviews as neutral.
 #  These mistakes can make sense because neutral reviews can contain both positive and negative words,
 #  making it harder for the classifier to tell the difference.
