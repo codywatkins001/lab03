@@ -41,3 +41,17 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("\nTraining reviews:", len(X_train))
 print("Testing reviews:", len(X_test))
 
+# Classification pipeline
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import LinearSVC
+
+model = Pipeline([
+    ('tfidf', TfidfVectorizer()),
+    ('clf', LinearSVC(random_state=42))
+])
+
+# Train classifier
+model.fit(X_train, y_train)
+
+print("\nClassifier trained successfully!")
