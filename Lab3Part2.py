@@ -1,7 +1,8 @@
 # Code for Lab 3 Part 2
 # Written by: Cody Watkins
 # Date: 10-22-2026
-# AI usage: I used the built in AI to handle the comments and the grid search portion of the code.
+# AI usage: I used the built in AI to handle the comments and the grid search portion of the code. I also had it check my code for errors and make suggestions.
+
 #Questions
 #1. My classifier predicted positive reviews the best, correctly identifying 392 out of 474.
 #  Negative reviews were the hardest to identify, with only 175 out of 299 correctly predicted.
