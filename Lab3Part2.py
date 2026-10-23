@@ -55,3 +55,13 @@ model = Pipeline([
 model.fit(X_train, y_train)
 
 print("\nClassifier trained successfully!")
+
+# Calculate accuracy
+from sklearn.metrics import accuracy_score
+
+predicted = model.predict(X_test)
+
+accuracy = accuracy_score(y_test, predicted)
+
+print("\nClassifier Accuracy:", accuracy)
+print("Accuracy Percentage:", accuracy * 100, "%")
